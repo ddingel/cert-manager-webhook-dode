@@ -1,0 +1,4 @@
+spring.application.name: cert-manager-webhook-dode
+dode:
+  token: "INVALID_TOKEN"
+  domain: "example.com"

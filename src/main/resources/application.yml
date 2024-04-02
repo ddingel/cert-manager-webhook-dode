@@ -1,0 +1,5 @@
+spring.application.name: cert-manager-webhook-dode
+dode:
+  api: https://my.do.de/api/letsencrypt
+  token: "INVALID_TOKEN"
+  domain: "example.com"
