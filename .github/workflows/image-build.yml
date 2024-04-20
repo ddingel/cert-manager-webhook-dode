@@ -2,7 +2,7 @@ name: publish-docker-image
 on: [ push ]
 
 jobs:
-  publish-docker-image:
+  build-docker-image:
     runs-on: ubuntu-latest
 
     permissions:
@@ -34,4 +34,55 @@ jobs:
       - name: Push
         if: github.ref == 'refs/heads/main'
         run: docker push ghcr.io/${{github.repository}}:latest
+
+#  build-native-docker-image:
+#    runs-on: ubuntu-latest
+#
+#    permissions:
+#      contents: read
+#      packages: write
+#
+#    steps:
+#      - uses: actions/checkout@v3
+#
+#      - name: Cache SDKMAN installation
+#        uses: actions/cache@v3
+#        with:
+#          path: ~/.sdkman
+#          key: ${{ runner.os }}-sdkman-${{ hashFiles('**/pom.xml') }}
+#          restore-keys: |
+#            ${{ runner.os }}-sdkman-
+#
+#      - name: Install GraalVM with SDKMAN
+#        run: |
+#          curl -s "https://get.sdkman.io" | bash
+#          source "$HOME/.sdkman/bin/sdkman-init.sh"
+#          sdk install java 21.2.0.r11-grl
+#          java -version
+#
+#      - name: Install GraalVM Native Image
+#        run: |
+#          source "$HOME/.sdkman/bin/sdkman-init.sh"
+#          gu install native-image
+#          native-image --version
+#
+#      - name: Setup Gradle
+#        uses: gradle/gradle-build-action@v3
+#
+#      - name: Build image
+#        run: |
+#          source "$HOME/.sdkman/bin/sdkman-init.sh"
+#          ./gradlew bootBuildImage --imageName ghcr.io/${{ github.repository }}-native
+#
+#      - name: Log in to the Container registry
+#        if: github.ref == 'refs/heads/main'
+#        uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
+#        with:
+#          registry: ghcr.io
+#          username: ${{ github.actor }}
+#          password: ${{ secrets.GITHUB_TOKEN }}
+#
+#      - name: Push
+#        if: github.ref == 'refs/heads/main'
+#        run: docker push ghcr.io/${{github.repository}}-native:latest
 
