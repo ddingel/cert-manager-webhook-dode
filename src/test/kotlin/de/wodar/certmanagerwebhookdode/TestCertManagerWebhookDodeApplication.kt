@@ -8,5 +8,7 @@ import org.springframework.boot.with
 class TestCertManagerWebhookDodeApplication
 
 fun main(args: Array<String>) {
-    fromApplication<CertManagerWebhookDodeApplication>().with(TestCertManagerWebhookDodeApplication::class).run(*args)
+    fromApplication<CertManagerWebhookDodeApplication>()
+        .with(TestCertManagerWebhookDodeApplication::class)
+        .run(*args)
 }

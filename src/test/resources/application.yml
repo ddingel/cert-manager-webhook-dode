@@ -1,4 +1,5 @@
 spring.application.name: cert-manager-webhook-dode
 dode:
+  api: http://localhost:80
   token: "INVALID_TOKEN"
   domain: "example.com"
