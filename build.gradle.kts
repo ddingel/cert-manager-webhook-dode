@@ -31,7 +31,7 @@ dependencies {
     runtimeOnly("io.micrometer:micrometer-registry-prometheus")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.boot:spring-boot-testcontainers")
-    testImplementation("org.testcontainers:mockserver:1.19.7")
+    testImplementation("org.testcontainers:mockserver:1.19.8")
     testImplementation("org.mock-server:mockserver-client-java:5.15.0")
     testImplementation("io.projectreactor:reactor-test")
     testImplementation("org.testcontainers:junit-jupiter")
